@@ -30,7 +30,7 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: gcr.io/sincere-chariot-264308/gcloud
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
     command:
     - cat
     tty: true
