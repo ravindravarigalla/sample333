@@ -1,11 +1,11 @@
 pipeline {
 
   environment {
-    PROJECT = "gcp-shared-host-nonprod-276203"
+    PROJECT = "sincere-chariot-264308"
     APP_NAME = "test"
     FE_SVC_NAME = "${APP_NAME}"
-    CLUSTER = "gke-apps-nonprod"
-    CLUSTER_ZONE = "asia-southeast2-a"
+    CLUSTER = "cluster-1"
+    CLUSTER_ZONE = "us-central1-c"
     IMAGE_TAG = "us.gcr.io/${PROJECT}/${APP_NAME}:latest"
     JENKINS_CRED = "${PROJECT}"
   }
