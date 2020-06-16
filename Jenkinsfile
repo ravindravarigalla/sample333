@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: us.gcr.io/sincere-chariot-264308/helm3
+    image: us.gcr.io/gcp-shared-host-nonprod-276203/helm3
     command:
     - cat
     tty: true
