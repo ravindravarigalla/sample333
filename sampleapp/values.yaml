@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: us.gcr.io/gcp-shared-host-nonprod-276203/gceme
+  repository: us.gcr.io/gcp-shared-host-nonprod-276203/sampleapp
   tag: latest
   imagePullPolicy: Always 
 imagePullSecrets: []
