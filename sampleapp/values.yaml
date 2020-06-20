@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: us.gcr.io/still-smithy-279711/sampleapp
+  repository: us.gcr.io/still-smithy-279711/testinmg
   tag: latest
   imagePullPolicy: Always 
 imagePullSecrets: []
