@@ -30,12 +30,12 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: us.gcr.io/gcp-shared-host-nonprod-276203/gcloud
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
     command:
     - cat
     tty: true
   - name: helm
-    image: us.gcr.io/gcp-shared-host-nonprod-276203/helm3
+    image: us.gcr.io/sincere-chariot-264308/helm3
     command:
     - cat
     tty: true
@@ -67,7 +67,7 @@ spec:
         container('helm') {
           sh """
           #helm ls
-          gcloud container clusters get-credentials gke-apps-nonprod --zone asia-southeast2-a --project gcp-shared-host-nonprod-276203
+          gcloud container clusters get-credentials cluster-1 --zone us-central1-a --project still-smithy-279711
           kubectl get pods --namespace default
           helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
           helm repo update 
