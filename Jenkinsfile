@@ -53,7 +53,7 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/testing ."
+          #sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/testing ."
         }
       }
     }
