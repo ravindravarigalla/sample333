@@ -30,7 +30,7 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: us.gcr.io/still-smithy-279711/gcloud
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
     command:
     - cat
     tty: true
@@ -59,7 +59,7 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/testing1 ."
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
         }
       }
     }
