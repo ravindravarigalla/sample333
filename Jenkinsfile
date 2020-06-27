@@ -59,7 +59,6 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "service docker start"
           sh "docker build -t  us.gcr.io/still-smithy-279711/gcloud11 ."
         }
       }
