@@ -5,7 +5,7 @@ pipeline {
     APP_NAME = "sampleapp"
     FE_SVC_NAME = "${APP_NAME}"
     CLUSTER = "cluster-1"
-    CLUSTER_ZONE = "us-central1-a"
+    CLUSTER_ZONE = "us-central1-c"
     IMAGE_TAG = "us.gcr.io/${PROJECT}/${APP_NAME}:latest"
     JENKINS_CRED = "${PROJECT}"
   }
@@ -34,6 +34,12 @@ spec:
     command:
     - cat
     tty: true
+ - name: helm
+    image: us.gcr.io/sincere-chariot-264308/helm3
+    command:
+    - cat
+    tty: true
+    
 """
 }
   }
@@ -53,7 +59,7 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/testing ."
+          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/testing1 ."
         }
       }
     }
@@ -61,9 +67,6 @@ spec:
       steps {
         container('helm') {
           sh """
-          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
           #helm ls
           gcloud container clusters get-credentials cluster-1 --zone us-central1-a --project still-smithy-279711
           kubectl get pods --namespace default
