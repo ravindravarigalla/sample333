@@ -59,7 +59,7 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us.gcr.io/still-smithy-279711/go ."
         }
       }
     }
