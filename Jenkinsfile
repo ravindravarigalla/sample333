@@ -34,7 +34,7 @@ spec:
     command:
     - cat
     tty: true
- - name: helm
+  - name: helm
     image: us.gcr.io/sincere-chariot-264308/helm3
     command:
     - cat
