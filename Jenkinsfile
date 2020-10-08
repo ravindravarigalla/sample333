@@ -24,7 +24,7 @@ spec:
   # Use service account that can deploy to all namespaces
   
   containers:
-  - name: golang
+  - name: aws
     image: golang:1.10
     command:
     - cat
@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: us.gcr.io/still-smithy-279711/helm3
+    image: us.gcr.io/still-smithy-279711/helm
     command:
     - cat
     tty: true
@@ -58,8 +58,8 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "gcloud auth list"
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
+          sh "#gcloud auth list"
+          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
         }
       }
     }
@@ -68,8 +68,6 @@ spec:
         container('helm') {
           sh """
           #helm ls
-          gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711
-          kubectl get pods --namespace default
           helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
           helm repo update 
           helm install sampleapp2 sampleapp/ --namespace default
