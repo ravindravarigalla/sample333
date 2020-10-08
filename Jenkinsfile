@@ -68,7 +68,7 @@ spec:
           #helm ls
           helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
           helm repo update 
-          helm install sampleapp2 sampleapp/ --namespace default
+          helm install sample sampleapp/ --namespace test
           helm ls
           kubectl get pods --namespace default
           """ 
