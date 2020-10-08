@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: alpine/helm
+    image: dtzar/helm-kubectl
     command:
     - cat
     tty: true
