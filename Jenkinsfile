@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: us.gcr.io/still-smithy-279711/helm
+    image: gcr.io/still-smithy-279711/helm
     command:
     - cat
     tty: true
