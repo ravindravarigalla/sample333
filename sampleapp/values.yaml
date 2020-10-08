@@ -5,8 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: us.gcr.io/still-smithy-279711/testinmg
-  tag: latest
+  repository: nginx
   imagePullPolicy: Always 
 imagePullSecrets: []
 nameOverride: ""
