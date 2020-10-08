@@ -25,7 +25,7 @@ spec:
   
   containers:
   - name: aws
-    image: golang:1.10
+    image: amazon/aws-cli:latest
     command:
     - cat
     tty: true
@@ -46,11 +46,9 @@ spec:
   stages {
     stage('Test') {
       steps {
-        container('golang') {
+        container('aws') {
           sh """
-            ln -s `pwd` /go/src/sample-app
-            cd /go/src/sample-app
-            go test
+           aws eks --region us-east-2 update-kubeconfig --name cloudfront
           """
         }
       }
