@@ -58,6 +58,7 @@ spec:
         container('gcloud') {
           sh "gcloud auth list"
           sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
+          sh "gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711"
         }
       }
     }
