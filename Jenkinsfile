@@ -58,7 +58,7 @@ spec:
         container('gcloud') {
           sh "gcloud auth list"
           sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
-          sh "gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711"
+          sh "#gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711"
         }
       }
     }
@@ -66,8 +66,9 @@ spec:
       steps {
         container('helm') {
           sh """
-         kubectl create deployment nodejs --image=gcr.io/still-smithy-279711/node11
-          kubectl get pods --namespace default
+          docker version
+          #kubectl create deployment nodejs --image=gcr.io/still-smithy-279711/node11
+          #kubectl get pods --namespace default
           """ 
         }
       }
