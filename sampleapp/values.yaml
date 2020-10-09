@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: us.gcr.io/still-smithy-279711/go
+  repository: gcr.io/still-smithy-279711/node11
   imagePullPolicy: Always 
 imagePullSecrets: []
 nameOverride: ""
