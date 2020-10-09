@@ -57,7 +57,7 @@ spec:
       steps {
         container('gcloud') {
           sh "gcloud auth list"
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
+          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
           sh "gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711"
         }
       }
@@ -67,10 +67,11 @@ spec:
         container('helm') {
           sh """
           #helm ls
-          helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
-          helm repo update 
-          helm install sample sampleapp/ --namespace default
-          helm ls
+          #helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
+          #helm repo update 
+          #helm install sample sampleapp/ --namespace default
+          #helm ls
+          kubectl run nginx --image=nginx
           kubectl get pods --namespace default
           """ 
         }
