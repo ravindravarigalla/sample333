@@ -66,12 +66,7 @@ spec:
       steps {
         container('helm') {
           sh """
-          #helm ls
-          #helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
-          #helm repo update 
-          #helm install sample sampleapp/ --namespace default
-          #helm ls
-          kubectl run nginx --image=nginx
+         kubectl create deployment nodejs --image=gcr.io/still-smithy-279711/node11
           kubectl get pods --namespace default
           """ 
         }
