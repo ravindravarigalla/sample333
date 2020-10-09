@@ -48,7 +48,7 @@ spec:
       steps {
         container('aws') {
           sh """
-           aws eks --region us-east-2 update-kubeconfig --name cloudfront
+          #aws eks --region us-east-2 update-kubeconfig --name cloudfront
           """
         }
       }
@@ -56,8 +56,8 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "#gcloud auth list"
-          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
+          sh "gcloud auth list"
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  us.gcr.io/still-smithy-279711/go . "
         }
       }
     }
@@ -68,7 +68,7 @@ spec:
           #helm ls
           helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
           helm repo update 
-          helm install sample sampleapp/ --namespace test
+          helm install sample sampleapp/ --namespace default
           helm ls
           kubectl get pods --namespace default
           """ 
