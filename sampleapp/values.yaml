@@ -5,14 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/still-smithy-279711/node11
+  repository: nginx
   imagePullPolicy: Always 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 chart:
-  releaseName: sampleapp
+  releaseName: sample
 
 autoscaling:
     enabled: true
