@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: dtzar/helm-kubectl
+    image: ventx/jenkins-kube-helm
     command:
     - cat
     tty: true
