@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: us.gcr.io/still-smithy-279711/go
   imagePullPolicy: Always 
 imagePullSecrets: []
 nameOverride: ""
