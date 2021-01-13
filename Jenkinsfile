@@ -68,7 +68,7 @@ spec:
           sh """
           #helm ls
           gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project dazzling-scheme-281712
-          helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+          helm repo add stable https://charts.helm.sh/stable
           helm install sample sampleapp -n default
           #kubectl create deployment nodejs --image=gcr.io/still-smithy-279711/node11
           #kubectl get pods --namespace default
