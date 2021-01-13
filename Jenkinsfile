@@ -70,29 +70,5 @@ spec:
         }
       }
     }
-    stage('Build and push image with Container Builder') {
-      steps {
-        container('gcloud') {
-          sh "#gcloud auth list"
-          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
-        }
-      }
-    }
-    stage('Deploy ') {
-      steps {
-        container('helm') {
-          sh """
-          #helm ls
-          #gcloud container clusters get-credentials gke-apps-nonprod --zone asia-southeast2-a --project gcp-shared-host-nonprod-276203
-          #ubectl get pods --namespace default
-          helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
-          helm repo update 
-          helm install sampleapp sampleapp/ --namespace default
-          helm ls
-          kubectl get pods --namespace default
-          """ 
-        }
-      }
-    }
   }
 }
