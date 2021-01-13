@@ -62,15 +62,16 @@ spec:
 }
   }
   stages {
-    stage('Test') {
+    stage('Bake') {
       steps {
-        container('aws') {
-          sh """
-          #aws eks --region us-east-2 update-kubeconfig --name cloudfront
-          """
+	 container(name: 'kaniko') {
+            sh '''
+            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=destination=ravindra777/dockertest
+            '''
         }
       }
     }
+  }
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
