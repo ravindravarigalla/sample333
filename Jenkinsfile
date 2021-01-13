@@ -62,22 +62,20 @@ spec:
 }
   }
   stages {
-    stage('Build and push image with Container Builder') {
+    stage('Test') {
       steps {
         container('kaniko') {
           sh """
-	     /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=ravindra777/dockertest
-	     """
+             /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=ravindra777/dockertest
+          """
         }
       }
     }
-  }
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "gcloud auth list"
-          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t  gcr.io/dazzling-scheme-281712/go . "
-          sh "#gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project still-smithy-279711"
+          sh "#gcloud auth list"
+          sh "#PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
         }
       }
     }
@@ -86,11 +84,13 @@ spec:
         container('helm') {
           sh """
           #helm ls
-          gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project dazzling-scheme-281712
-          helm repo add stable https://charts.helm.sh/stable
-          helm install sample sampleapp -n default
-          #kubectl create deployment nodejs --image=gcr.io/still-smithy-279711/node11
-          #kubectl get pods --namespace default
+          #gcloud container clusters get-credentials gke-apps-nonprod --zone asia-southeast2-a --project gcp-shared-host-nonprod-276203
+          #ubectl get pods --namespace default
+          helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
+          helm repo update 
+          helm install sampleapp sampleapp/ --namespace default
+          helm ls
+          kubectl get pods --namespace default
           """ 
         }
       }
