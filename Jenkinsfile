@@ -62,12 +62,12 @@ spec:
 }
   }
   stages {
-    stage('Bake') {
+    stage('Build and push image with Container Builder') {
       steps {
-	 container(name: 'kaniko') {
-            sh '''
-            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=destination=ravindra777/dockertest
-            '''
+        container('kaniko') {
+          sh """
+	     /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=ravindra777/dockertest
+	     """
         }
       }
     }
