@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: gcr.io/dazzling-scheme-281712/helm3
+    image: gcr.io/dazzling-scheme-281712/helm3-test
     command:
     - cat
     tty: true
