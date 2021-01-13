@@ -66,7 +66,7 @@ spec:
       steps {
         container('kaniko') {
           sh """
-           /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=${DOCKER_USERNAME}/dockertest
+           /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=ravindra777/dockertest
           """
         }
       }
