@@ -28,8 +28,8 @@ spec:
     image: gcr.io/kaniko-project/executor:v1.0.0
     imagePullPolicy: Always
     args: ["--dockerfile=Dockerfile",
-            "--context=",
-            "--destination=${DOCKER_USERNAME}/kaniko-demo"]
+            "--context=https://github.com/ravindravarigalla/sample333.git",
+            "--destination=ravindra777/dockertest:v1"]
     volumeMounts:
       - name: docker-config
         mountPath: /kaniko/.docker
