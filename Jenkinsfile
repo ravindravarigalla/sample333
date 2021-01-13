@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    PROJECT = "	still-smithy-279711"
+    PROJECT = "	dazzling-scheme-281712"
     APP_NAME = "sample"
     FE_SVC_NAME = "${APP_NAME}"
     CLUSTER = "cluster-1"
@@ -35,7 +35,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: gcr.io/still-smithy-279711/ravindra-helm
+    image: gcr.io/dazzling-scheme-281712/helm3
     command:
     - cat
     tty: true
