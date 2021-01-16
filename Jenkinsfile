@@ -65,8 +65,7 @@ spec:
       steps {
         container('helm') {
           sh """
-             kubectl config get-contexts
-             kubectl get nodes
+             kubectl config current-context
             """
         }
       }
