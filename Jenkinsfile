@@ -69,7 +69,7 @@ spec:
             kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8 --cluster=kubernetes --user=265265976143684875
             kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
             kubectl get nodes
-            kubectl get pods
+            kubectl get pods -n bootcamp
              """
          }
         }
