@@ -65,10 +65,9 @@ spec:
       steps {
         container('helm') {
           script{
-         
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubecfg')]){
                     //Change context with related namespace
-                    sh "kubectl config set-context $(kubectl config current-context) --namespace=default"       
+              sh "kubectl config set-context $(kubectl config current-context) --namespace=default"       
          }
         }
       }
