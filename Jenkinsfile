@@ -65,8 +65,6 @@ spec:
       steps {
         container('helm') {
           sh """
-             kubectl config view -o jsonpath='{.users[*].name}' 
-             KUBECONFIG=~/.kube/config:~/.kube/
              kubectl get pods
             """
         }
