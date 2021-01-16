@@ -65,7 +65,7 @@ spec:
       steps {
         container('helm') {
           withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECRED')]) {
-          sh 'cat $KUBECRED > ~/.kube/config'
+          sh 'kubectl get nodes'
          }
         }
       }
