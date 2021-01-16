@@ -65,8 +65,8 @@ spec:
       steps {
         container('helm') {
           sh """
-             KUBECONFIG=~/.kube/config
-             kubectl get pods -n bootcamp
+             kubectl config view
+             #kubectl get pods -n bootcamp
             """
         }
       }
