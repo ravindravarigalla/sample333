@@ -64,8 +64,11 @@ spec:
     stage('helm') {
       steps {
         container('helm') {
-          withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECRED')]) {
-          sh 'kubectl get nodes'
+          withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+          sh """
+             export KUBECONFIG=~/.kube/config
+             kubectl get pods
+             """
          }
         }
       }
