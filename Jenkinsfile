@@ -65,8 +65,8 @@ spec:
       steps {
         container('helm') {
           sh """
-             kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8  --user=265265976143684875 --namespace=default \
-               && kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
+             kubectl config view -o jsonpath='{.users[*].name}' 
+             KUBECONFIG=~/.kube/config:~/.kube/
              kubectl get pods
             """
         }
