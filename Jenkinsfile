@@ -66,6 +66,7 @@ spec:
         container('helm') {
           sh """
              kubectl config get-contexts
+             kubectl get nodes
             """
         }
       }
