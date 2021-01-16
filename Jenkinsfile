@@ -56,7 +56,7 @@ spec:
       steps {
         container('kaniko') {
           sh """
-            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=trainingad1/test
+            #/kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=trainingad1/test
             """
         }
       }
@@ -65,12 +65,7 @@ spec:
       steps {
         container('helm') {
           sh """
-            #kubectl config view
-            kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8  --user=265265976143684875 --namespace=default \
-              && kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
-              kubectl config current-context
-              #kubectl config view
-              kubectl get pods -n jenkins
+             kubectl config get-contexts
             """
         }
       }
