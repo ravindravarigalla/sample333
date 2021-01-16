@@ -66,7 +66,7 @@ spec:
       steps {
         container('kaniko') {
           sh """
-            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=ravindra777/dockertest
+            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=trainingad1/test
             """
         }
       }
