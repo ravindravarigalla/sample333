@@ -24,6 +24,11 @@ spec:
   # Use service account that can deploy to all namespaces
   
   containers:  
+  - name: helm
+    image: gcr.io/dazzling-scheme-281712/helm3-test
+    command:
+    - cat
+    tty: true
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
     imagePullPolicy: Always
@@ -52,6 +57,15 @@ spec:
         container('kaniko') {
           sh """
             /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=trainingad1/test
+            """
+        }
+      }
+    }
+    stage('helm') {
+      steps {
+        container('helm') {
+          sh """
+            kubectl config view
             """
         }
       }
