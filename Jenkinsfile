@@ -65,10 +65,10 @@ spec:
       steps {
         container('helm') {
           sh """
-            kubectl config view
-            kubectl config set-context 265265976143684875-cc6efa8a194934955bf8b4aa3891e9ae8  --user=v.FISClouds.rizwan --namespace=bootcamp \
-              && kubectl config use-context 265265976143684875-cc6efa8a194934955bf8b4aa3891e9ae8
-              #kubectl get nodes
+            #kubectl config view
+            kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8  --user=v.FISClouds.rizwan --namespace=bootcamp \
+              && kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
+              kubectl config-view
               kubectl get pods -n bootcamp
             """
         }
