@@ -70,6 +70,7 @@ spec:
             kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
             kubectl get nodes
             kubectl get pods -n bootcamp
+            helm ls -n bootcamp
              """
          }
         }
