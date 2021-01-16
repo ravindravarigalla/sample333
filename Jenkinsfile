@@ -23,22 +23,7 @@ labels:
 spec:
   # Use service account that can deploy to all namespaces
   
-  containers:
-  - name: aws
-    image: amazon/aws-cli:latest
-    command:
-    - cat
-    tty: true
-  - name: gcloud
-    image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
-    command:
-    - cat
-    tty: true
-  - name: helm
-    image: gcr.io/dazzling-scheme-281712/helm3-test
-    command:
-    - cat
-    tty: true    
+  containers:  
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
     imagePullPolicy: Always
