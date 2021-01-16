@@ -66,8 +66,9 @@ spec:
         container('helm') {
           withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
           sh """
-             export KUBECONFIG=~/.kube/config
-             kubectl get pods
+            kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8 --cluster=kubernetes --user=265265976143684875
+            kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
+            kubectl get pods
              """
          }
         }
