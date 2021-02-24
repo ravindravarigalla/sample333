@@ -64,7 +64,7 @@ spec:
             kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8 --cluster=kubernetes --user=265265976143684875
             kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
             kubectl get nodes
-            kubectl create deployment test --image adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com/sales/test:latest
+            kubectl create deployment test --image adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com/sales/test:latest -n default
             #kubectl create secret docker-registry regcred1 --docker-server=adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com --docker-username=itadira@adira --docker-password=4dminR3g2021 --docker-email=af.it.appl@adira.co.id -n jenkins
              """
          }
