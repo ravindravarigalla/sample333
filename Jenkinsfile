@@ -1,12 +1,7 @@
 pipeline {
 
   environment {
-    PROJECT = "	dazzling-scheme-281712"
-    APP_NAME = "sample"
-    FE_SVC_NAME = "${APP_NAME}"
-    CLUSTER = "cluster-1"
-    CLUSTER_ZONE = "us-central1-c"
-    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:latest"
+    IMAGE_TAG = "adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com/sales/test:latest"
     JENKINS_CRED = "${PROJECT}"
   }
 
@@ -25,7 +20,7 @@ spec:
   
   containers:  
   - name: helm
-    image: gcr.io/dazzling-scheme-281712/helm3-test
+    image: trainingad1/helm3
     command:
     - cat
     tty: true
@@ -43,7 +38,7 @@ spec:
     projected:
       sources:
       - secret:
-          name: regcred
+          name: regcred1
           items:
             - key: .dockerconfigjson
               path: config.json
@@ -52,11 +47,11 @@ spec:
 }
   }
   stages {
-    stage('Test') {
+    stage('kaniko') {
       steps {
         container('kaniko') {
           sh """
-            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=trainingad1/test
+            /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination="${IMAGE_TAG}"
             """
         }
       }
@@ -69,9 +64,7 @@ spec:
             kubectl config set-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8 --cluster=kubernetes --user=265265976143684875
             kubectl config use-context 265265976143684875-cc6efa8a194934959bf8b4aa3891e9ae8
             kubectl get nodes
-            kubectl get pods -n bootcamp
-            kubectl delete pod nginx -n bootcamp
-            helm ls -n bootcamp
+            #kubectl create secret docker-registry regcred1 --docker-server=adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com --docker-username=itadira@adira --docker-password=4dminR3g2021 --docker-email=af.it.appl@adira.co.id -n jenkins
              """
          }
         }
