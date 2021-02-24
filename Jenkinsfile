@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    IMAGE_TAG = "adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com/sales/test:latest"
+    IMAGE_TAG = "adira-ent-registry-registry.ap-southeast-5.cr.aliyuncs.com/sales/test:latest"
     JENKINS_CRED = "${PROJECT}"
   }
 
