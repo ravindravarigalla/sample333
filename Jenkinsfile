@@ -5,56 +5,54 @@ pipeline {
     JENKINS_CRED = "${PROJECT}"
   }
 
-  agent {
-    kubernetes {
-      
-      defaultContainer 'jnlp'
+   agent {
+        kubernetes {
       yaml """
 apiVersion: v1
 kind: Pod
 metadata:
-labels:
-  component: ci
+  name: example-pb
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/dind: unconfined
+    container.seccomp.security.alpha.kubernetes.io/dind: unconfined
+  labels:
+    some-label: label1
 spec:
-  # Use service account that can deploy to all namespaces
-  
-  containers:  
-  - name: dind
-    image: docker:dind
-    imagePullPolicy: Always
-    securityContext:
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0        
-        privileged: true
-    tty: true
-    volumeMounts:
+  serviceAccountName: example
+  securityContext:
+    runAsUser: 10000
+    runAsGroup: 10000
+  containers: 
+    - name: jnlp
+      image: 'jenkins/jnlp-slave:4.3-4-alpine'
+      args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
+    - name: dind
+      image: docker:dind
+      securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0        
+          privileged: true
+      tty: true
+      volumeMounts:
       - name: var-run
-        mountPath:  /var/run
+        mountPath: /var/run
+    - name: example-test
+      image: pranavbhatia/example-test:0.1
+      securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0
+      volumeMounts:
+      - name: var-run
+        mountPath: /var/run  
   volumes:
-  - name: docker-config
-    projected:
-      sources:
-      - secret:
-          name: regcred1
-          items:
-            - key: .dockerconfigjson
-              path: config.json
-              
-    
+  - emptyDir: {}
+    name: var-run
 """
-}
-  }
-  stages {
-    stage('kaniko') {
-      steps {
-        container('kaniko') {
-          sh """
-            #/kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination="${IMAGE_TAG}"
-            """
         }
-      }
     }
+  stages {
     stage('dind') {
       steps {
         container('dind') {
