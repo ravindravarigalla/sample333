@@ -31,7 +31,7 @@ spec:
         privileged: true
     volumeMounts:
       - name: docker-config
-        mountPath: /var/run
+        mountPath: /var/run/docker.sock
   volumes:
   - emptyDir: {} 
     name: docker-config
