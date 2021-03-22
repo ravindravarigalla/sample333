@@ -21,13 +21,15 @@ spec:
   containers:
    - name: dind
      image: docker:dind
+     command:
+     - cat
+    tty: true
      securityContext:
          runAsUser: 0
          runAsGroup: 0
          fsGroup: 0        
          privileged: true
-      tty: true
-      volumeMounts:
+    volumeMounts:
       - name: var-run
         mountPath: /var/run
   - name: helm
