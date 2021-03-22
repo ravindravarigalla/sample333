@@ -45,6 +45,7 @@ spec:
       steps {
         container('dind') {
           sh """
+             chmod 777 /var/run/docker.sock
              docker build -t test .
             """
         }
