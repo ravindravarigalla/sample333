@@ -27,8 +27,6 @@ spec:
         runAsGroup: 0
         fsGroup: 0        
         privileged: true
-    command:
-    - /busybox/cat
     tty: true
     volumeMounts:
       - name: var-run
