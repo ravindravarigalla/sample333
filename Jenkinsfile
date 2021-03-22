@@ -24,15 +24,6 @@ metadata:
       volumeMounts:
       - name: var-run
         mountPath: /var/run
-    - name: example-test
-      image: pranavbhatia/example-test:0.1
-      securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          fsGroup: 0
-      volumeMounts:
-      - name: var-run
-        mountPath: /var/run  
   volumes:
   - emptyDir: {}
     name: var-run
