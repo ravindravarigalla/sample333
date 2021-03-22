@@ -18,34 +18,21 @@ labels:
 spec:
   # Use service account that can deploy to all namespaces
   
-  containers:
-   - name: dind
-     image: docker:dind
-     command:
-     - cat
-    tty: true
+  containers:  
+  - name: dind
+    image: docker:dind
+    imagePullPolicy: Always
     securityContext:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 0        
         privileged: true
-    volumeMounts:
-      - name: var-run
-        mountPath: /var/run
-  - name: helm
-    image: trainingad1/helm3
-    command:
-    - cat
-    tty: true
-  - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
-    imagePullPolicy: Always
     command:
     - /busybox/cat
     tty: true
     volumeMounts:
-      - name: docker-config
-        mountPath: /kaniko/.docker
+      - name: var-run
+        mountPath:  /var/run
   volumes:
   - name: docker-config
     projected:
