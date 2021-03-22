@@ -1,41 +1,49 @@
 pipeline {
 
   environment {
-    IMAGE_TAG = "adira-ent-registry-registry-vpc.ap-southeast-5.cr.aliyuncs.com/sales/test:latest"
+    IMAGE_TAG = "trainingad1/adservice"
     JENKINS_CRED = "${PROJECT}"
   }
 
-   agent {
-        kubernetes {
+  agent {
+    kubernetes {
+      
+      defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
 kind: Pod
 metadata:
-  name: example-pb
-  containers: 
-    - name: dind
-      image: docker:dind
-      securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          fsGroup: 0        
-          privileged: true
-      tty: true
-      volumeMounts:
-      - name: var-run
+labels:
+  component: ci
+spec:
+  # Use service account that can deploy to all namespaces
+  
+  containers:  
+  - name: dind
+    image: docker:dind
+    securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0        
+        privileged: true
+     tty: true
+    volumeMounts:
+      - name: docker-config
         mountPath: /var/run
   volumes:
-  - emptyDir: {}
-    name: var-run
+  - emptyDir: {} 
+    name: docker-config
+    
+    
 """
-        }
-    }
+}
+  }
   stages {
-    stage('dind') {
+    stage('kaniko') {
       steps {
         container('dind') {
           sh """
-            docker build -t test .
+             docker build -t test .
             """
         }
       }
