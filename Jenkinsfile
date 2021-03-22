@@ -45,8 +45,7 @@ spec:
       steps {
         container('dind') {
           sh """
-             chmod 777 /var/run/docker.sock
-             docker build -t test .
+             pwd && echo "Pulling image" && docker pull ubuntu:18.04
             """
         }
       }
