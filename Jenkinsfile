@@ -45,7 +45,7 @@ spec:
       steps {
         container('dind') {
           sh """
-             pwd && echo "Pulling image" && docker pull ubuntu:18.04
+             pwd && echo "Pulling image" && docker pull --privilaged ubuntu:18.04
             """
         }
       }
