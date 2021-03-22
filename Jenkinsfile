@@ -21,12 +21,14 @@ spec:
   containers:  
   - name: dind
     image: docker:dind
+    command:
+    - cat
+    tty: true
     securityContext:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 0        
         privileged: true
-     tty: true
     volumeMounts:
       - name: docker-config
         mountPath: /var/run
