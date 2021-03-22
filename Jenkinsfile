@@ -18,7 +18,18 @@ labels:
 spec:
   # Use service account that can deploy to all namespaces
   
-  containers:  
+  containers:
+  - name: dind
+      image: docker:dind
+      securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0        
+          privileged: true
+      tty: true
+      volumeMounts:
+      - name: var-run
+        mountPath: /var/run
   - name: helm
     image: trainingad1/helm3
     command:
@@ -42,6 +53,7 @@ spec:
           items:
             - key: .dockerconfigjson
               path: config.json
+              
     
 """
 }
@@ -52,6 +64,15 @@ spec:
         container('kaniko') {
           sh """
             #/kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination="${IMAGE_TAG}"
+            """
+        }
+      }
+    }
+    stage('kaniko') {
+      steps {
+        container('dind') {
+          sh """
+            docker build -t test .
             """
         }
       }
