@@ -24,11 +24,11 @@ spec:
      command:
      - cat
     tty: true
-     securityContext:
-         runAsUser: 0
-         runAsGroup: 0
-         fsGroup: 0        
-         privileged: true
+    securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0        
+        privileged: true
     volumeMounts:
       - name: var-run
         mountPath: /var/run
