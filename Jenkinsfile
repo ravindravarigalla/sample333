@@ -12,20 +12,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: example-pb
-  annotations:
-    container.apparmor.security.beta.kubernetes.io/dind: unconfined
-    container.seccomp.security.alpha.kubernetes.io/dind: unconfined
-  labels:
-    some-label: label1
-spec:
-  serviceAccountName: example
-  securityContext:
-    runAsUser: 10000
-    runAsGroup: 10000
   containers: 
-    - name: jnlp
-      image: 'jenkins/jnlp-slave:4.3-4-alpine'
-      args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
     - name: dind
       image: docker:dind
       securityContext:
