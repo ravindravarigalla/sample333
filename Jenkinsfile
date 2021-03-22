@@ -68,7 +68,7 @@ spec:
         }
       }
     }
-    stage('kaniko') {
+    stage('dind') {
       steps {
         container('dind') {
           sh """
