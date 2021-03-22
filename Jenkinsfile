@@ -19,13 +19,13 @@ spec:
   # Use service account that can deploy to all namespaces
   
   containers:
-  - name: dind
-      image: docker:dind
-      securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          fsGroup: 0        
-          privileged: true
+   - name: dind
+     image: docker:dind
+     securityContext:
+         runAsUser: 0
+         runAsGroup: 0
+         fsGroup: 0        
+         privileged: true
       tty: true
       volumeMounts:
       - name: var-run
